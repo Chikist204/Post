@@ -32,7 +32,7 @@ for i in items[1:]:
         item2 = j.find_all('div', {"class": "RatingPage_table__info__2gWiU"})
         # time.sleep(1)
         for x in j.find_all('div', {"class": "RatingPage_table__name__3LfzS"}):
-            snilss.append(x.find_all('p')[1].text)
+            snilss.append(x.find_all('p')[0].text.split()[1][1:])
 
         data = []
         for x in item2:
@@ -45,7 +45,7 @@ for i in items[1:]:
                 for z in y.find_all('p'):
                     data_check.append(z)
         prioritet = data_check[0].find('span').text
-        time.sleep(0.0045)
+        time.sleep(0.005)
         sogl_zach = data_check[5].find('span').text
         time.sleep(0.005)
         original = data_check[-1].find('span').text
@@ -70,9 +70,10 @@ for i in items[1:]:
 print(cnt)
 print(write_data)
 time.sleep(1)
-with open('itmo/full_24-03-02.txt', 'w') as file:
-    for i in write_data:
-        print(' '.join(i), file=file)
+print(snilss)
+# with open('itmo/full_24-03-02.txt', 'w') as file:
+#     for i in write_data:
+#         print(' '.join(i), file=file)
 browser.quit()
 
 
